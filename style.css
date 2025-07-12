@@ -11,6 +11,7 @@ body {
   color: #333;
   display: flex;
   justify-content: center;
+  background-color: #000; /* L'Oreal black */
 }
 
 .page-wrapper {
@@ -28,6 +29,7 @@ body {
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 10px;
+  color: #c6a76d; /* L'Oreal gold */
 }
 
 /* chat window */
@@ -36,75 +38,144 @@ body {
 }
 
 .chat-window {
-  height: 360px;
-  border: 1px solid #000;
-  padding: 20px;
-  font-size: 18px;
-  line-height: 1.5;
+  height: 400px;
   overflow-y: auto;
-  background: #fafafa;
-  white-space: pre-line;
+  padding: 20px;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* messages */
-.msg {
-  margin-bottom: 14px;
-  line-height: 1.5;
+/* Message wrapper styling */
+.message-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 85%;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.msg.user {
+.message-wrapper.user {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.message-wrapper.assistant {
+  margin-right: auto;
+}
+
+/* Avatar styling */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Message bubble styling */
+.message-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  max-width: 100%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  position: relative;
+}
+
+.user .message-bubble {
+  background-color: #c6a76d; /* L'Oréal gold */
   color: #000;
+  border-top-right-radius: 4px;
 }
 
-.msg.ai {
-  color: #666666;
+.assistant .message-bubble {
+  background-color: #333;
+  color: #fff;
+  border-top-left-radius: 4px;
 }
 
-/* input row */
+/* Loading animation */
+.loading::after {
+  content: "...";
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0%,
+  20% {
+    content: ".";
+  }
+  40%,
+  60% {
+    content: "..";
+  }
+  80%,
+  100% {
+    content: "...";
+  }
+}
+
+/* Message fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form styling */
 .chat-form {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  padding: 16px;
+  background-color: #2a2a2a;
+  border-top: 1px solid #333;
 }
 
 .chat-form input {
   flex: 1;
   padding: 12px;
-  border: 1px solid #ccc;
-  font-size: 18px;
+  border: 1px solid #444;
+  border-radius: 24px;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 1rem;
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  outline: none;
+  border-color: #c6a76d;
 }
 
 .chat-form button {
-  font-size: 18px;
-  background: #000;
-  color: #fff;
+  background-color: #c6a76d;
+  color: #000;
   border: none;
-  padding: 12px;
-  width: 48px;
-  height: 48px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
-}
-
-.chat-form button .material-icons {
-  font-size: 24px;
+  transition: background-color 0.2s;
 }
 
 .chat-form button:hover {
-  background: #666666;
-}
-
-.chat-form button:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  background-color: #b89b5c;
 }
 
 /* visually hidden */
@@ -116,7 +187,6 @@ body {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
   border: 0;
 }
 
@@ -140,4 +210,19 @@ body {
 
 .site-footer a:hover {
   color: #666666;
+}
+
+/* Style the logo */
+#loreal-logo {
+  display: block;
+  margin: 30px auto 20px auto;
+  width: 200px;
+  height: auto;
+}
+
+/* Add gold accent to headings */
+h1,
+h2,
+h3 {
+  color: #c6a76d; /* L'Oreal gold */
 }
